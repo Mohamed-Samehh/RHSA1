@@ -1,0 +1,1102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Red Hat System Administration I (RHSA1) Study Guide Summary</title>
+    <style>
+        @page {
+            size: A4;
+            margin: 2cm;
+        }
+        
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 210mm;
+            margin: 0 auto;
+            padding: 20px;
+            background: white;
+        }
+        
+        h1 {
+            color: #c00;
+            font-size: 24px;
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #c00;
+        }
+        
+        h2 {
+            color: #c00;
+            font-size: 20px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            padding-left: 10px;
+            border-left: 5px solid #c00;
+        }
+        
+        h3 {
+            color: #000;
+            font-size: 16px;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        
+        p {
+            margin: 10px 0;
+            text-align: justify;
+        }
+        
+        ul, ol {
+            margin: 10px 0;
+            padding-left: 40px;
+        }
+        
+        li {
+            margin: 5px 0;
+        }
+        
+        code {
+            background-color: #f4f4f4;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 14px;
+        }
+        
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        
+        th {
+            background-color: #c00;
+            color: white;
+            padding: 12px;
+            text-align: left;
+            font-weight: bold;
+        }
+        
+        td {
+            padding: 10px;
+        }
+        
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        
+        .section {
+            margin-bottom: 30px;
+        }
+        
+        .subsection {
+            margin-left: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .note {
+            background-color: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 10px;
+            margin: 15px 0;
+        }
+        
+        .quick-revision {
+            background-color: #e7f3ff;
+            padding: 20px;
+            margin-top: 40px;
+            border: 2px solid #0066cc;
+        }
+        
+        .separator {
+            border-top: 2px dashed #ccc;
+            margin: 30px 0;
+        }
+        
+        @media print {
+            body {
+                padding: 0;
+            }
+            
+            .no-break {
+                page-break-inside: avoid;
+            }
+            
+            h2 {
+                page-break-after: avoid;
+            }
+        }
+        
+        .btn-container {
+            text-align: center;
+            margin: 20px 0;
+            padding: 20px;
+            background: #f0f0f0;
+            border-radius: 8px;
+        }
+        
+        .btn-download {
+            background-color: #c00;
+            color: white;
+            padding: 15px 30px;
+            font-size: 18px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+        
+        .btn-download:hover {
+            background-color: #a00;
+        }
+    </style>
+</head>
+<body>
+    <div class="btn-container">
+        <button class="btn-download" onclick="window.print()">📄 Download as PDF (Print to PDF)</button>
+        <p style="margin-top: 10px; color: #666; font-size: 14px;">Use your browser's Print function and select "Save as PDF"</p>
+    </div>
+
+    <h1>Red Hat System Administration I (RHSA1) Study Guide Summary</h1>
+
+    <div class="section">
+        <h2>I. Day 1: Fundamentals, Linux Components, and File System Basics</h2>
+        
+        <div class="subsection">
+            <h3>1. Free/Open Source Software (FOSS) and Licensing</h3>
+            <ul>
+                <li><strong>Definition:</strong> FOSS provides users with significant freedoms.</li>
+                <li><strong>Freedoms Provided by FOSS:</strong>
+                    <ul>
+                        <li>The ability to View the source code used to compile programs.</li>
+                        <li>The ability to Make modifications to the software.</li>
+                        <li>The ability to Distribute these modifications.</li>
+                    </ul>
+                </li>
+                <li><strong>FOSS Licenses:</strong> FOSS is usually covered under a public license. An open-source license allows the source code, blueprint, or design to be used, modified, and/or shared under defined terms and conditions.</li>
+                <li><strong>Key Examples:</strong> The most common public license is the GNU General Public License (GPL). Other examples include LGPL, Apache, Mozilla Public License, and BSD.</li>
+            </ul>
+        </div>
+
+        <div class="subsection">
+            <h3>2. Linux History and Relevance</h3>
+            <ul>
+                <li><strong>Unix Origin:</strong> The first version of Unix was created in Bell Labs in 1969.</li>
+                <li><strong>Unix Flavors:</strong> Historical Unix variants include AIX (IBM), HP/UX (Hewlett-Packard), Solaris (Sun), and IRIX (Silicon Graphics). These variants generally operate in the same manner and offer the same standard utilities and commands.</li>
+                <li><strong>Linux Kernel:</strong> The Linux kernel was created by Linus Torvalds after he finished college in 1991.</li>
+                <li><strong>Why Linux?</strong> Linux is dominant in the professional and servers sector. Internet service providers (ISPs), e-commerce sites, and commercial applications widely use Linux.</li>
+                <li><strong>Why Red Hat Enterprise Linux (RHEL)?</strong>
+                    <ul>
+                        <li>RHEL is reliable, secure, and scales well.</li>
+                        <li>More than 90% of Fortune Global 500 companies utilize Red Hat products and solutions.</li>
+                        <li>Red Hat offers training and support and partners with hardware vendors.</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+
+        <div class="subsection">
+            <h3>3. Linux Components</h3>
+            <p>Linux is composed of three primary parts:</p>
+            <ol>
+                <li><strong>Kernel:</strong>
+                    <ul>
+                        <li>The core of the operating system.</li>
+                        <li>Contains components like device drivers.</li>
+                        <li>Loads into Random Access Memory (RAM) when the machine boots and remains resident until the machine powers off.</li>
+                    </ul>
+                </li>
+                <li><strong>Shell:</strong>
+                    <ul>
+                        <li>Provides an interface allowing the user to communicate with the kernel.</li>
+                        <li>Parses commands entered by the user and translates them into logical segments for execution by the kernel or other utilities.</li>
+                        <li>"bash" (Bourne Again Shell) is the most commonly used shell on Linux. Other shells include Bourne Shell (sh), Korn Shell (ksh), and C Shell (csh).</li>
+                    </ul>
+                </li>
+                <li><strong>Terminal:</strong>
+                    <ul>
+                        <li>The display area that provides the shell with a place to accept typed commands and display their results.</li>
+                    </ul>
+                </li>
+            </ol>
+        </div>
+
+        <div class="subsection">
+            <h3>4. Command Structure and Execution</h3>
+            <ul>
+                <li><strong>Command Syntax:</strong> <code>command [options] [arguments]</code>
+                    <ul>
+                        <li>Each item in the syntax is separated by a space.</li>
+                        <li>Options: Modify the command's behavior.</li>
+                        <li>Arguments: Information needed by the command, often file names.</li>
+                    </ul>
+                </li>
+                <li><strong>Multiple Commands:</strong> Separate commands with a semicolon (;).</li>
+                <li><strong>Interrupting/Terminating:</strong>
+                    <ul>
+                        <li>Interrupt: Use [Ctrl]-c to interrupt a command that is taking too long to execute.</li>
+                        <li>Terminate Input: Use [Ctrl]-d to terminate a command that expects input to come from the keyboard but hasn't received an argument.</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+
+        <div class="subsection">
+            <h3>5. Linux Documentation</h3>
+            <p>Linux documentation is often accessed via manual pages (man).</p>
+            <ul>
+                <li><strong>Manual Page Sections:</strong> A manual page typically consists of:
+                    <ul>
+                        <li>Name: The command name and a one-line description.</li>
+                        <li>Synopsis: The formal syntax of the command.</li>
+                        <li>Description: Explanation of how the command works.</li>
+                        <li>Files: The files used by the command.</li>
+                        <li>Bugs: Known errors.</li>
+                        <li>See also: Other related commands.</li>
+                    </ul>
+                </li>
+                <li><strong>Documentation Commands:</strong>
+                    <ul>
+                        <li><code>man -k keyword</code>: Shows commands that have manual pages containing the given keyword.</li>
+                        <li><code>whatis command</code>: Shows the command's one-line description.</li>
+                        <li><code>--help Option</code>: A way to get help about a command, often built into the command itself (if supported).</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+
+        <div class="subsection">
+            <h3>6. File and Directory Management</h3>
+            <ul>
+                <li><strong>Directory Structure Concept:</strong> Analogous to a building (file system), a room (directory), and a desk (file).</li>
+                <li><strong>Key Concepts:</strong>
+                    <ul>
+                        <li>Current Working Directory (CWD): The directory (room) you are currently in.</li>
+                        <li>Pathnames: Can be absolute (full path starting from root) or relative (relative to the CWD).</li>
+                    </ul>
+                </li>
+                <li><strong>Directory Commands:</strong>
+                    <ul>
+                        <li><code>pwd</code>: Prints the current working directory (e.g., /home/guest).</li>
+                        <li><code>cd /path/</code>: Changes directory.</li>
+                        <li><code>cd ..</code>: Moves to the parent directory.</li>
+                        <li><code>cd ~</code>: Moves to the home directory.</li>
+                        <li><code>cd -</code>: Moves to the previous working directory.</li>
+                    </ul>
+                </li>
+                <li><strong>Listing Directory Contents (ls):</strong>
+                    <ul>
+                        <li><code>ls -a</code>: Lists all files, including hidden files (those starting with a dot .).</li>
+                        <li><code>ls -l</code>: Provides a long listing, showing detailed information (permissions, owner, size, date).</li>
+                        <li><code>ls -F</code>: Appends indicators to filenames (e.g., / for directories, * for executables, @ for symbolic links).</li>
+                        <li><code>ls -R</code>: Recursively lists subdirectories.</li>
+                        <li><code>ls -ld dir1</code>: Shows the long listing of the directory itself.</li>
+                    </ul>
+                </li>
+                <li><strong>File Naming Rules:</strong>
+                    <ul>
+                        <li>File names can be up to 255 characters.</li>
+                        <li>File names are case sensitive.</li>
+                        <li>Important Note: While conventions exist, there are no extensions required in Linux.</li>
+                        <li>Avoid: Special characters such as >< ? * # '.</li>
+                    </ul>
+                </li>
+                <li><strong>Viewing File Content:</strong>
+                    <ul>
+                        <li><code>cat fname</code>: Displays the file content.</li>
+                        <li><code>more fname</code>: Displays content one screen at a time.
+                            <ul>
+                                <li>more Scrolling Keys: Spacebar (forward one screen), Return (scroll one line), b (move back one screen), /string (search forward for pattern), q (quit).</li>
+                            </ul>
+                        </li>
+                        <li><code>head -n fname</code>: Displays the beginning lines of a file.</li>
+                        <li><code>tail [-n|+n] fname</code>: Displays the ending lines of a file.</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+
+        <div class="subsection">
+            <h3>7. File Globbing (Metacharacters)</h3>
+            <p>Wildcards, or "metacharacters," allow one pattern to expand to multiple filenames when executing commands.</p>
+            <table>
+                <tr>
+                    <th>Metacharacter</th>
+                    <th>Definition</th>
+                    <th>Example Application</th>
+                </tr>
+                <tr>
+                    <td>* (Asterisk)</td>
+                    <td>Represents 0 or more characters (except the leading dot .).</td>
+                    <td>ls f* matches file1, file2, fruit.</td>
+                </tr>
+                <tr>
+                    <td>? (Question Mark)</td>
+                    <td>Represents any single character (except the leading dot .).</td>
+                    <td>ls file? matches file1, file2, file4.</td>
+                </tr>
+                <tr>
+                    <td>[] (Square Bracket)</td>
+                    <td>Represents a range of characters for a single character position.</td>
+                    <td>ls [a-f]* matches files starting with a, b, c, d, e, or f.</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="subsection">
+            <h3>8. File and Directory Manipulation Commands</h3>
+            <ul>
+                <li><strong>Copying:</strong> <code>cp options source(s) target</code>
+                    <ul>
+                        <li><code>-i</code>: Prevents accidental overwriting of existing files.</li>
+                        <li><code>-r</code>: Copies a directory, including the contents of all subdirectories (recursive).</li>
+                    </ul>
+                </li>
+                <li><strong>Moving and Renaming:</strong> <code>mv options source(s) target</code>
+                    <ul>
+                        <li><code>-i</code>: Prevents accidental overwriting of existing files/directories.</li>
+                    </ul>
+                </li>
+                <li><strong>Creation:</strong>
+                    <ul>
+                        <li><code>touch file(s)_name</code>: Creates new, empty files.</li>
+                        <li><code>mkdir [-p] dir(s)_name</code>: Creates directories. The -p option creates parent directories as needed.</li>
+                    </ul>
+                </li>
+                <li><strong>Removal:</strong>
+                    <ul>
+                        <li><code>rm [-i] file(s)_name</code>: Removes files. -i prompts before removal.</li>
+                        <li><code>rmdir dir(s)_name</code>: Removes directories (only if empty).</li>
+                        <li><code>rm [-r] dir(s)_name</code>: Recursively removes directories and their contents.</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>II. Day 2: User/Group Administration and Permissions</h2>
+        
+        <div class="subsection">
+            <h3>1. User and Group Account Files</h3>
+            <p>Linux systems rely on several key files to manage user and group identity and authentication:</p>
+            <table>
+                <tr>
+                    <th>File Name</th>
+                    <th>Purpose and Format</th>
+                    <th>Key Fields Included</th>
+                </tr>
+                <tr>
+                    <td>/etc/passwd</td>
+                    <td>Defines user accounts and properties.</td>
+                    <td>Login name, User ID (uid), Group Id (gid), Home Directory, Login shell.</td>
+                </tr>
+                <tr>
+                    <td>/etc/shadow</td>
+                    <td>Stores secure, encrypted password information and aging policy.</td>
+                    <td>Login name, Encrypted password, Days since 1/1/1970 password last changed, Min/Max days between changes, Warning days before expiration, Expiration date.</td>
+                </tr>
+                <tr>
+                    <td>/etc/group</td>
+                    <td>Defines groups and their members.</td>
+                    <td>Group name, Group ID (gid), Comma-separated list of group members.</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="subsection">
+            <h3>2. User Account Management Commands</h3>
+            <ul>
+                <li><strong>Adding Users:</strong>
+                    <ul>
+                        <li><code># useradd username</code>: Creates the user account; populates the user's home directory from the /etc/skel directory.</li>
+                        <li><code># useradd -D</code>: Views and modifies default user addition settings.</li>
+                        <li><code># passwd username</code>: Sets the user's password.</li>
+                        <li><code># newusers filename</code>: Adds multiple user accounts listed in a file.</li>
+                    </ul>
+                </li>
+                <li><strong>Modifying Users:</strong>
+                    <ul>
+                        <li><code># usermod [options] username</code>: Command-line tool to change user account information.
+                            <ul>
+                                <li>Options: <code>-l &lt;login name&gt;</code> (changes login name), <code>-L</code> (lock password), <code>-U</code> (unlock password).</li>
+                            </ul>
+                        </li>
+                        <li><code>chage</code> command: Used to set password aging policies.</li>
+                    </ul>
+                </li>
+                <li><strong>Deleting Users:</strong>
+                    <ul>
+                        <li><code># userdel [-r] username</code>: Deletes the user account. The -r option removes the user's home directory (/home/username) and mail spool file (/var/spool/mail/username).</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+
+        <div class="subsection">
+            <h3>3. Password Aging Policies (chage)</h3>
+            <p>The chage command manages password expiration and warning settings.</p>
+            <ul>
+                <li><strong>Syntax:</strong> <code># chage [options] username</code>.</li>
+                <li><strong>Options:</strong>
+                    <ul>
+                        <li><code>-m</code>: Change the minimum number of days between password changes.</li>
+                        <li><code>-M</code>: Change the maximum number of days between password changes.</li>
+                        <li><code>-E date</code>: Change the expiration date for the account.</li>
+                        <li><code>-W</code>: Change the number of days to start warning the user before a required password change.</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+
+        <div class="subsection">
+            <h3>4. Group Management Commands</h3>
+            <ul>
+                <li><strong>Creation:</strong> <code># groupadd groupname</code>.</li>
+                <li><strong>Modification:</strong> <code># groupmod [options] groupname</code>.</li>
+                <li><strong>Deletion:</strong> <code># groupdel groupname</code>.</li>
+                <li><strong>Advanced Group Management:</strong> The gpasswd command can be used to define group members, group administrators, and create or change group passwords.</li>
+                <li><strong>Finding Files:</strong> <code># find / -nogroup</code>: Lists all files owned by groups that are not defined in the /etc/group file.</li>
+            </ul>
+        </div>
+
+        <div class="subsection">
+            <h3>5. Switching Accounts and Status Checks</h3>
+            <ul>
+                <li><strong>Switching User Identity:</strong> <code># su [-] [username]</code>: Switches to another user account.</li>
+                <li><strong>Switching Active Group:</strong> <code>newgrp group</code>: Switches between groups the user is a member of.</li>
+                <li><strong>Status Commands:</strong>
+                    <ul>
+                        <li><code>groups</code>: Displays the groups the user is a member of.</li>
+                        <li><code>whoami</code>: Displays the current effective user name and ID.</li>
+                        <li><code>id</code>: Displays the user's UID, GID, and groups.</li>
+                        <li><code>who</code>: Displays user login name, login device (tty), and login date/time for users currently on the system.</li>
+                        <li><code>w [user]</code>: Displays a summary of current system activity, including what each user is doing.</li>
+                        <li><code>finger</code>: Reveals detailed information about users, locally or remotely.</li>
+                    </ul>
+                </li>
+                <li><strong>sudo Access:</strong> sudo is a more secure way to grant limited root privileges. Access is controlled by the /etc/sudoers file, which must be edited using the visudo editor (which includes a syntax checker).</li>
+            </ul>
+        </div>
+
+        <div class="subsection">
+            <h3>6. Ownership and Permissions</h3>
+            <ul>
+                <li><strong>Ownership:</strong> Every file and directory has a user owner and a group owner. A newly created file is owned by the user who creates it and that user's primary group.</li>
+                <li><strong>Changing Ownership:</strong> <code># chown user1 file1</code>, <code># chown user1:group1 file1</code>, <code># chown :group1 file1</code>.</li>
+                <li><strong>Security Scheme:</strong> Permissions protect files and directories and are assigned to three categories:
+                    <ol>
+                        <li>Owner (u): File owner permissions.</li>
+                        <li>Group (g): Members of the group the file is assigned to.</li>
+                        <li>Other (o): All other users. Note: The most specific permissions apply. Only the file owner or root can change permissions.</li>
+                    </ol>
+                </li>
+            </ul>
+            
+            <table>
+                <tr>
+                    <th>Permission Type</th>
+                    <th>Access for a File</th>
+                    <th>Access for a Directory</th>
+                </tr>
+                <tr>
+                    <td>Read (r)</td>
+                    <td>Display contents, copy the file.</td>
+                    <td>List directory contents using ls.</td>
+                </tr>
+                <tr>
+                    <td>Write (w)</td>
+                    <td>Modify file contents.</td>
+                    <td>Add and delete files (requires execute access too).</td>
+                </tr>
+                <tr>
+                    <td>Execute (x)</td>
+                    <td>Execute the file (if it's executable/script).</td>
+                    <td>Use the cd command to access the directory.</td>
+                </tr>
+            </table>
+
+            <ul>
+                <li><strong>Changing Permissions (chmod):</strong> <code>chmod permission filename</code>.
+                    <ul>
+                        <li><strong>Symbolic Mode:</strong> Uses letters and operators.
+                            <ul>
+                                <li>Who: u, g, o, a (all).</li>
+                                <li>Operator: + (add), - (remove), = (assign absolutely).</li>
+                                <li>Permissions: r, w, x.</li>
+                                <li>Example: <code>chmod u+x,go+r file1</code>.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Octal (Numeric) Mode:</strong> Uses numerical values.
+                            <ul>
+                                <li>Read (r): 4.</li>
+                                <li>Write (w): 2.</li>
+                                <li>Execute (x): 1.</li>
+                                <li>Example: <code>chmod 755 file1</code> (Owner: 7=rwx; Group: 5=rx; Other: 5=rx).</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li><strong>Default Permissions (umask):</strong> Sets the default permissions applied when new files and directories are created. Example: <code># umask 002</code>.</li>
+            </ul>
+        </div>
+
+        <div class="subsection">
+            <h3>7. System Shutdown</h3>
+            <p>Shutdown or reboot is only required when adding/removing hardware, or upgrading the OS/kernel.</p>
+            <ul>
+                <li><strong>Shutdown Commands:</strong>
+                    <ul>
+                        <li><code>shutdown -k now</code>: Sends a warning message and disables logins, but does not actually halt the system.</li>
+                        <li><code>shutdown -h time</code>: Halts the system after shutdown.</li>
+                        <li><code>poweroff</code>.</li>
+                        <li><code>init 0</code>.</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>III. Day 3: The Vi Editor, Initialization, and Environment</h2>
+        
+        <div class="subsection">
+            <h3>1. The Vi (Vim) Text Editor</h3>
+            <p>Vi is the default editor in all UNIX operating systems and is available even in emergencies. Linux typically uses Vim (vi improved), which offers syntax highlighting, better arrow key support, and mouse support.</p>
+            
+            <ul>
+                <li><strong>Vi Operating Modes:</strong>
+                    <ol>
+                        <li>Command Mode: The default mode upon startup. Used for issuing commands (delete, copy, movement).</li>
+                        <li>Edit Mode (Insert Mode): Used for entering text into the file. Accessed via commands like i, a, o, etc. Exit via Esc key.</li>
+                        <li>Last Line Mode: Used for advanced editing commands (saving, quitting, search/replace). Accessed by entering a colon (:) while in Command Mode.</li>
+                    </ol>
+                </li>
+                <li><strong>Key Insertion Commands (from Command Mode):</strong>
+                    <ul>
+                        <li><code>i</code>: Inserts text before the cursor.</li>
+                        <li><code>a</code>: Appends text after the cursor.</li>
+                        <li><code>I</code>: Inserts text at the beginning of the line.</li>
+                        <li><code>A</code>: Appends text at the end of the line.</li>
+                        <li><code>o</code>: Opens a new blank line below the cursor.</li>
+                        <li><code>O</code>: Opens a new blank line above the cursor.</li>
+                    </ul>
+                </li>
+                <li><strong>Key Editing and Deletion Commands (Command Mode):</strong>
+                    <ul>
+                        <li><code>x</code>: Deletes the character at the cursor.</li>
+                        <li><code>dw</code>: Deletes a word or part of the word to the right of the cursor.</li>
+                        <li><code>dd</code>: Deletes the entire line containing the cursor.</li>
+                        <li><code>D</code>: Deletes from the cursor to the right end of the line.</li>
+                    </ul>
+                </li>
+                <li><strong>Cursor Movement (Command Mode):</strong>
+                    <ul>
+                        <li><code>h, j, k, l</code>: Standard movement keys (left, down, up, right).</li>
+                        <li><code>w</code>: Forward one word.</li>
+                        <li><code>0</code>: To the beginning of the line.</li>
+                        <li><code>G</code>: Goes to the last line of the file.</li>
+                        <li><code>nG</code> or <code>:n</code>: Goes to Line n.</li>
+                        <li>Control-F / Control-B: Pages forward/back one screen.</li>
+                    </ul>
+                </li>
+                <li><strong>Search and Replace:</strong>
+                    <ul>
+                        <li><code>/string</code>: Searches forward for the string.</li>
+                        <li><code>?string</code>: Searches backward for the string.</li>
+                        <li><code>n</code>: Searches for the next occurrence.</li>
+                        <li><code>:%s/old/new/g</code>: Searches for the old string and replaces it with the new string globally (Last Line mode).</li>
+                    </ul>
+                </li>
+                <li><strong>Save and Quit (Last Line Mode):</strong>
+                    <ul>
+                        <li><code>:w</code>: Saves the file.</li>
+                        <li><code>:wq</code>, <code>:x</code>, or <code>ZZ</code>: Saves and quits.</li>
+                        <li><code>:q!</code>: Quits without saving (force quit).</li>
+                    </ul>
+                </li>
+                <li><strong>Customizing Vi (Last Line Mode):</strong>
+                    <ul>
+                        <li><code>:set nu</code>: Shows line numbers.</li>
+                        <li><code>:set ic</code>: Ignore case sensitive searches.</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+
+        <div class="subsection">
+            <h3>2. Shell Initialization Files</h3>
+            <p>These files set up the user's environment upon login or shell invocation.</p>
+            <table>
+                <tr>
+                    <th>File Type</th>
+                    <th>File Name</th>
+                    <th>Execution Context</th>
+                </tr>
+                <tr>
+                    <td>Global Login</td>
+                    <td>/etc/profile</td>
+                    <td>Executed by the bash login shell and DisplayManager (desktop loads).</td>
+                </tr>
+                <tr>
+                    <td>Global Shell</td>
+                    <td>/etc/bash.bashrc</td>
+                    <td>Executed whenever a user enters a shell or the desktop environment.</td>
+                </tr>
+                <tr>
+                    <td>User Graphical/Text</td>
+                    <td>~/.profile</td>
+                    <td>Executed by DisplayManager (GUI session) and login shell (textual console).</td>
+                </tr>
+                <tr>
+                    <td>User Login</td>
+                    <td>~/.bash_profile or ~/.bash_login</td>
+                    <td>Executed by bash when started as a login shell (prefers ~/.bash_profile). Does not influence graphical sessions by default.</td>
+                </tr>
+                <tr>
+                    <td>User Invocation</td>
+                    <td>~/.bashrc</td>
+                    <td>Executed in every invocation of bash, including graphical login environment.</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="subsection">
+            <h3>3. Environment Variables</h3>
+            <p>Variables that store data related to the current shell environment. Their value is accessed by preceding the name with a dollar sign ($). The set command views the contents of all variables.</p>
+            <table>
+                <tr>
+                    <th>Variable Name</th>
+                    <th>Meaning</th>
+                </tr>
+                <tr>
+                    <td>$HOME</td>
+                    <td>Complete path of the user's home directory.</td>
+                </tr>
+                <tr>
+                    <td>$PATH</td>
+                    <td>Colon-separated list of directories the shell uses to look for executable programs.</td>
+                </tr>
+                <tr>
+                    <td>$PWD</td>
+                    <td>The user's current working directory.</td>
+                </tr>
+                <tr>
+                    <td>$USER</td>
+                    <td>Currently logged in user.</td>
+                </tr>
+                <tr>
+                    <td>$SHELL</td>
+                    <td>Path name of the login shell.</td>
+                </tr>
+                <tr>
+                    <td>$HOSTNAME</td>
+                    <td>Name of the computer.</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="subsection">
+            <h3>4. Command Alias and History</h3>
+            <ul>
+                <li><strong>Alias:</strong> Used to create command shortcuts (e.g., <code>alias ll='ls -l '</code>).
+                    <ul>
+                        <li>To view all set aliases, type <code>alias</code>.</li>
+                        <li>To remove an alias, use <code>unalias command</code>.</li>
+                        <li>To bypass an alias, use the full path or a backslash (e.g., <code>\ls</code>).</li>
+                    </ul>
+                </li>
+                <li><strong>Command History:</strong> bash stores history in ~/.bash_history by default.
+                    <ul>
+                        <li><code>!!</code>: Repeats the last command.</li>
+                        <li><code>!string</code>: Repeats the last command that started with string.</li>
+                        <li><code>!n</code>: Repeats a command by its number in history.</li>
+                        <li><code>!-n</code>: Repeats a command entered n commands back.</li>
+                        <li><code>^old^new</code>: Repeats the last command with a substitution (old replaced by new).</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>IV. Day 4: Processes, I/O Redirection, and Utilities</h2>
+        
+        <div class="subsection">
+            <h3>1. Processes and Priority</h3>
+            <ul>
+                <li><strong>Process Definition:</strong> Every running program creates a process. Daemons are processes that run in the background and provide services. Every process has a PID (Process ID).</li>
+                <li><strong>Parent/Child Relationship:</strong> When a process creates another, the creator is the parent process, and the new one is the child process. The parent waits for the child to finish.</li>
+                <li><strong>Scheduling Priority (Niceness):</strong> Linux divides CPU time into slices. Niceness values affect scheduling priority.
+                    <ul>
+                        <li>Range: Niceness values range from -20 to +19.</li>
+                        <li>Meaning: Smaller numbers represent higher priority. Default value is 0.</li>
+                        <li>User Limits: Standard users can only adjust the priority down (up to +19, lower priority). Only the root user can increase priority (down to -20).</li>
+                    </ul>
+                </li>
+                <li><strong>Adjusting Priority:</strong>
+                    <ul>
+                        <li>At Invocation: <code>nice [-n adjustment] command</code>.</li>
+                        <li>Running Process: <code>renice priority [[-p] pid ...]</code>.</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+
+        <div class="subsection">
+            <h3>2. Viewing and Controlling Processes</h3>
+            <ul>
+                <li><strong>ps command:</strong> Displays process status.
+                    <ul>
+                        <li>Output fields include PID, TTY (terminal identifier), Execution time, and Command name.</li>
+                        <li>Options: <code>-e</code> (all system processes), <code>-f</code> (full information), <code>-u uid</code> (processes for a specific user).</li>
+                    </ul>
+                </li>
+                <li><strong>top utility:</strong> Views processes dynamically.</li>
+                <li><strong>pgrep command:</strong> Searches for processes by pattern. Options: <code>-x</code> (exact match), <code>-u uid</code> (specific user), <code>-l</code> (display name with PID).</li>
+                <li><strong>Signals and Killing:</strong> A signal is a message sent to a process to perform an action (e.g., termination).
+                    <ul>
+                        <li>SIGTERM (15): Default termination signal.</li>
+                        <li>SIGKILL (9): Immediate termination signal (cannot be ignored).</li>
+                        <li><code>kill</code>: <code>kill [-signal] PIDs</code>.</li>
+                        <li><code>pkill</code>: <code>pkill [-signal] process_name</code> (kills based on process name).</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+
+        <div class="subsection">
+            <h3>3. Standard I/O and Redirection</h3>
+            <ul>
+                <li><strong>Standard Input (0, stdin):</strong> Data source for a command (typically keyboard).</li>
+                <li><strong>Standard Output (1, stdout):</strong> Data destination for command results (typically screen).</li>
+                <li><strong>Standard Error (2, stderr):</strong> Data destination for command errors and messages (typically screen).</li>
+                <li><strong>Redirection Operators:</strong>
+                    <ul>
+                        <li><code>></code>: Redirects standard output to a file (overwrites file contents).</li>
+                        <li><code>>></code>: Redirects standard output to a file (appends to file contents).</li>
+                        <li><code><</code>: Redirects file content as standard input to a command.</li>
+                        <li><code>2></code>: Redirects standard error to a file (must place 2 before the operator).</li>
+                        <li><code>2> errs > results</code>: Redirects errors to one file (errs) and standard output to another (results).</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+
+        <div class="subsection">
+            <h3>4. Piping and Utilities</h3>
+            <ul>
+                <li><strong>Pipe Line (|):</strong> Used to send the standard output of one command as the standard input to another. Example: <code>$ ls -lR / | more</code>.</li>
+                <li><strong>tee Command:</strong> Reads from standard input and writes simultaneously to standard output and a specified file. Example: <code>$ ls -lR / | tee fname | more</code>.</li>
+                <li><strong>Text Processing Commands:</strong>
+                    <ul>
+                        <li><strong>wc (Word Count):</strong> Displays the number of characters, words, and lines in a file.
+                            <ul>
+                                <li>Options: <code>-c</code> (characters), <code>-l</code> (lines), <code>-w</code> (words).</li>
+                            </ul>
+                        </li>
+                        <li><strong>diff:</strong> Compares the contents of two files, showing differences.</li>
+                        <li><strong>grep:</strong> Displays lines of input that match a specified pattern (regular expression).
+                            <ul>
+                                <li>Options: <code>-i</code> (ignore case), <code>-l</code> (list file name), <code>-n</code> (precede line with number), <code>-v</code> (inverse search/non-matching lines), <code>-w</code> (search for complete word).</li>
+                            </ul>
+                        </li>
+                        <li><strong>tr (Translate):</strong> Translates characters from standard input to standard output.</li>
+                        <li><strong>cut:</strong> Cuts fields or columns of text. Options: <code>-f</code> (field/column), <code>-d</code> (delimiter, default TAB), <code>-c</code> (cuts by characters).</li>
+                        <li><strong>sort:</strong> Sorts text data from file or command output to standard output.</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>V. Day 5: Filesystems, Links, Packages, and Archiving</h2>
+        
+        <div class="subsection">
+            <h3>1. Inodes and Filesystem Structure</h3>
+            <ul>
+                <li><strong>Inode (Index Node):</strong> Linux identifies all files by numerical index nodes.</li>
+                <li><strong>Inode Table:</strong> A table within each filesystem that maps used inodes to specific files.</li>
+                <li><strong>Inode Stored Information (Metadata):</strong> The inode table stores file metadata, including: file type, permissions, number of links, owner IDs (user and group), timestamps (last changed/accessed), and the physical location of the file content on the media.</li>
+                <li><strong>Viewing Inode Number:</strong> Use <code>ls -i fname</code>.</li>
+            </ul>
+        </div>
+
+        <div class="subsection">
+            <h3>2. File Manipulation and Links</h3>
+            <ul>
+                <li><strong>cp vs. mv (Internal Filesystem):</strong>
+                    <ul>
+                        <li>Copy (cp): Allocates a new inode number for the copy, creating a completely independent file.</li>
+                        <li>Move (mv): If the source and destination are on the same filesystem, mv simply creates a new directory entry referencing the original inode number and deletes the old entry.</li>
+                    </ul>
+                </li>
+                <li><strong>Soft Link (Symbolic Link):</strong>
+                    <ul>
+                        <li>Creation: <code>ln -s testfile testlink</code>.</li>
+                        <li>Mechanism: Creates a new inode entry. The content of this new entry is the path to the original file.</li>
+                        <li>Boundary: Can be used across partition boundaries.</li>
+                        <li>Note: If the original file is deleted, the soft link becomes an "orphaned link".</li>
+                    </ul>
+                </li>
+                <li><strong>Hard Link:</strong>
+                    <ul>
+                        <li>Creation: <code>ln testfile testlink</code>.</li>
+                        <li>Mechanism: Creates a new directory entry that points directly to the exact same inode as the original file. The file content exists only once.</li>
+                        <li>Link Count: The link count in the inode table is incremented.</li>
+                        <li>Boundary: Cannot reach across partition boundaries; must exist within a single partition.</li>
+                        <li>Note: The file content remains accessible and stored until the link count reaches zero (i.e., all hard links are removed).</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+
+        <div class="subsection">
+            <h3>3. Disk Space Management</h3>
+            <ul>
+                <li><strong>df (Disk Free):</strong> Displays the number of free disk blocks and files.
+                    <ul>
+                        <li>Syntax: <code>df [-h] [block_device| directory|file]</code>.</li>
+                        <li>Option: <code>-h</code> provides human-readable sizes.</li>
+                    </ul>
+                </li>
+                <li><strong>du (Disk Usage):</strong> Displays the total sum of space allocated to all files rooted in a specified directory.
+                    <ul>
+                        <li>Syntax: <code>du [-sh] [dir…]</code>.</li>
+                        <li>Option: <code>-s</code> provides a summary.</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+
+        <div class="subsection">
+            <h3>4. Package Management Systems</h3>
+            <ul>
+                <li><strong>RPM (Red Hat Package Manager):</strong> Installs packages from *.rpm files. RPMs are digitally signed with a GPG key by the vendor for trustworthiness.
+                    <ul>
+                        <li><code>rpm -i somefile.rpm</code>: Install.</li>
+                        <li><code>rpm -e somefile</code>: Remove.</li>
+                        <li><code>rpm -U somefile</code>: Upgrade (removes the old version).</li>
+                        <li><code>rpm -F somefile</code>: Update (keeps the old version).</li>
+                        <li><code>rpm -qa</code>: Query all installed packages.</li>
+                    </ul>
+                </li>
+                <li><strong>YUM (Yellowdog Updater, Modified):</strong> A front-end to rpm.
+                    <ul>
+                        <li>Advantage: Resolves most dependencies automatically and seeks the most recent updates from online repositories. Repository locations are configured in /etc/yum.repos.d/*.repo.</li>
+                        <li><code>yum search somefile</code>: Look for a package.</li>
+                        <li><code>yum install somefile</code>: Install package and dependencies.</li>
+                        <li><code>yum remove somefile</code>: Uninstall package.</li>
+                        <li><code>yum upgrade somefile</code>: Upgrade package, removing prior versions.</li>
+                        <li><code>yum update somefile</code>: Update package, keeping prior versions.</li>
+                        <li><code>yum clean all</code>: Cleans yum download directories.</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+
+        <div class="subsection">
+            <h3>5. Finding Files</h3>
+            <ul>
+                <li><strong>locate command:</strong> Searches through a pre-built database of the filesystem contents.
+                    <ul>
+                        <li>Database: Built using the <code>updatedb</code> command.</li>
+                        <li>Speed/Accuracy: Faster than find, but the information is only as current as the last database update.</li>
+                    </ul>
+                </li>
+                <li><strong>find command:</strong> Searches the live filesystem.
+                    <ul>
+                        <li>Speed/Accuracy: Slower than locate, causes more load, but is more powerful and searches current data. Limited by user permissions.</li>
+                        <li>Key Expressions: <code>-name filename</code> (finds by name, supports wildcards in quotes), <code>-size [+|-]n</code> (finds files larger, smaller, or exactly n 512-byte blocks), <code>-mtime [+|-]n</code> (modified time), <code>-user loginID</code>, <code>-type</code> (e.g., f for file, d for directory), <code>-perm</code> (permissions).</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+
+        <div class="subsection">
+            <h3>6. Archiving and Compression</h3>
+            <p>Archiving is used to create copies of files/directories (archives) to safeguard them.</p>
+            <ul>
+                <li><strong>tar (Archiving):</strong> Archives files to/extracts files from a single tar file.
+                    <ul>
+                        <li>Key Functions/Options:
+                            <ul>
+                                <li><code>c</code>: Create a new tar file.</li>
+                                <li><code>t</code>: List table of content.</li>
+                                <li><code>x</code>: Extracts files.</li>
+                                <li><code>f</code>: Specifies the archive file (required).</li>
+                                <li><code>v</code>: Verbose mode (shows files processed).</li>
+                            </ul>
+                        </li>
+                        <li>Example: <code>tar cvf file.tar file1 file2</code> (create). <code>tar xvf file.tar</code> (extract).</li>
+                    </ul>
+                </li>
+                <li><strong>Compression Tools:</strong> Reduce file size.</li>
+            </ul>
+            
+            <table>
+                <tr>
+                    <th>Command</th>
+                    <th>Function</th>
+                    <th>Output Extension</th>
+                    <th>Viewing Command</th>
+                    <th>Restoring Command</th>
+                </tr>
+                <tr>
+                    <td>compress</td>
+                    <td>Reduces text file size by 50-60%.</td>
+                    <td>.Z.</td>
+                    <td>zcat.</td>
+                    <td>uncompress.</td>
+                </tr>
+                <tr>
+                    <td>gzip</td>
+                    <td>Reduces file size.</td>
+                    <td>.gz.</td>
+                    <td>gzcat.</td>
+                    <td>gunzip.</td>
+                </tr>
+                <tr>
+                    <td>bzip2</td>
+                    <td>Reduces file size.</td>
+                    <td>.bz2.</td>
+                    <td>bzcat.</td>
+                    <td>bunzip2.</td>
+                </tr>
+                <tr>
+                    <td>zip</td>
+                    <td>Compresses multiple files into a single archive.</td>
+                    <td>.zip.</td>
+                    <td>unzip -l (list).</td>
+                    <td>unzip (restore).</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <div class="separator"></div>
+
+    <div class="quick-revision">
+        <h2 style="text-align: center; color: #0066cc; border: none; padding: 0;">Quick Revision Section</h2>
+        
+        <table style="margin-top: 20px;">
+            <tr>
+                <th>Concept</th>
+                <th>Term/Formula</th>
+                <th>Explanation/Definition</th>
+            </tr>
+            <tr>
+                <td>Command Syntax</td>
+                <td>command [options] [arguments]</td>
+                <td>Structure of most Linux commands.</td>
+            </tr>
+            <tr>
+                <td>FOSS License</td>
+                <td>GNU GPL</td>
+                <td>The most common public license for Free/Open Source Software.</td>
+            </tr>
+            <tr>
+                <td>Linux Core</td>
+                <td>Kernel</td>
+                <td>The core of the OS; stays resident in RAM; manages hardware/drivers.</td>
+            </tr>
+            <tr>
+                <td>Shell Interface</td>
+                <td>bash</td>
+                <td>Bourne Again Shell; the most common interface for communicating with the kernel.</td>
+            </tr>
+            <tr>
+                <td>Process Priority</td>
+                <td>Niceness Range: -20 to +19</td>
+                <td>Smaller numbers are higher priority. Root can set priority up to -20.</td>
+            </tr>
+            <tr>
+                <td>Process Management</td>
+                <td>SIGTERM (15) / SIGKILL (9)</td>
+                <td>Standard/Default signal to terminate a process (15). Forceful, uncatchable termination signal (9).</td>
+            </tr>
+            <tr>
+                <td>Documentation</td>
+                <td>man -k keyword</td>
+                <td>Searches manual page descriptions for keywords.</td>
+            </tr>
+            <tr>
+                <td>Redirection</td>
+                <td>Command 2> errs</td>
+                <td>Redirects Standard Error (2) to the file errs.</td>
+            </tr>
+            <tr>
+                <td>Piping</td>
+                <td>Command1 | Command2</td>
+                <td>Pipes output from Command1 as input to Command2.</td>
+            </tr>
+            <tr>
+                <td>File Identification</td>
+                <td>Inode</td>
+                <td>A number used by Linux to track metadata about a file.</td>
+            </tr>
+            <tr>
+                <td>Soft Link</td>
+                <td>ln -s target link</td>
+                <td>A separate file entry containing the path to the original file; can cross filesystems; deleting target results in orphaned link.</td>
+            </tr>
+            <tr>
+                <td>Hard Link</td>
+                <td>ln target link</td>
+                <td>A new directory entry referencing the original file's inode; cannot cross filesystems; link count tracks removal.</td>
+            </tr>
+            <tr>
+                <td>Package Query</td>
+                <td>rpm -qa or yum list installed</td>
+                <td>Lists all packages currently installed on the system.</td>
+            </tr>
+            <tr>
+                <td>Filesystem Search</td>
+                <td>find / -name "file.txt"</td>
+                <td>Searches the live filesystem (slower, more powerful).</td>
+            </tr>
+            <tr>
+                <td>Database Search</td>
+                <td>locate file.txt</td>
+                <td>Searches a pre-built database (faster, potentially outdated).</td>
+            </tr>
+            <tr>
+                <td>Permissions</td>
+                <td>Octal 755 (rwxr-xr-x)</td>
+                <td>Owner has Read, Write, Execute (7). Group and Others have Read, Execute (5).</td>
+            </tr>
+            <tr>
+                <td>Default Permissions</td>
+                <td>umask</td>
+                <td>Command that sets default permissions for new files and directories.</td>
+            </tr>
+            <tr>
+                <td>Vi Quit/Save</td>
+                <td>:wq or ZZ (Last Line mode)</td>
+                <td>Commands to write (save) and quit the Vi editor.</td>
+            </tr>
+            <tr>
+                <td>Vi Force Quit</td>
+                <td>:q! (Last Line mode)</td>
+                <td>Command to quit Vi without saving changes.</td>
+            </tr>
+        </table>
+    </div>
+
+    <div style="text-align: center; margin-top: 40px; padding: 20px; background: #f0f0f0; border-radius: 8px;">
+        <p style="font-size: 14px; color: #666; margin: 0;">End of Red Hat System Administration I (RHSA1) Study Guide Summary</p>
+    </div>
+
+</body>
+</html>
