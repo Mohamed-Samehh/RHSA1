@@ -20,6 +20,13 @@
             background: white;
         }
         
+        @media screen and (max-width: 768px) {
+            body {
+                padding: 10px;
+                font-size: 14px;
+            }
+        }
+        
         h1 {
             color: #c00;
             font-size: 24px;
@@ -46,6 +53,22 @@
             font-weight: bold;
         }
         
+        @media screen and (max-width: 768px) {
+            h1 {
+                font-size: 20px;
+                margin-bottom: 20px;
+            }
+            
+            h2 {
+                font-size: 18px;
+                margin-top: 20px;
+            }
+            
+            h3 {
+                font-size: 15px;
+            }
+        }
+        
         p {
             margin: 10px 0;
             text-align: justify;
@@ -54,6 +77,12 @@
         ul, ol {
             margin: 10px 0;
             padding-left: 40px;
+        }
+        
+        @media screen and (max-width: 768px) {
+            ul, ol {
+                padding-left: 25px;
+            }
         }
         
         li {
@@ -66,6 +95,15 @@
             border-radius: 3px;
             font-family: 'Courier New', monospace;
             font-size: 14px;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+        }
+
+        @media screen and (max-width: 768px) {
+            code {
+                font-size: 12px;
+                padding: 2px 4px;
+            }
         }
         
         table {
@@ -73,6 +111,20 @@
             border-collapse: collapse;
             margin: 20px 0;
             font-size: 14px;
+            overflow-x: auto;
+            display: block;
+        }
+
+        @media screen and (max-width: 768px) {
+            table {
+                font-size: 12px;
+                margin: 10px 0;
+            }
+            
+            th, td {
+                padding: 8px 4px;
+                word-wrap: break-word;
+            }
         }
         
         table, th, td {
@@ -102,6 +154,12 @@
         .subsection {
             margin-left: 20px;
             margin-bottom: 20px;
+        }
+
+        @media screen and (max-width: 768px) {
+            .subsection {
+                margin-left: 10px;
+            }
         }
         
         .note {
@@ -158,6 +216,20 @@
         
         .btn-download:hover {
             background-color: #a00;
+        }
+
+        @media screen and (max-width: 768px) {
+            .btn-container {
+                padding: 15px 10px;
+                margin: 10px 0;
+            }
+            
+            .btn-download {
+                padding: 12px 20px;
+                font-size: 16px;
+                width: 100%;
+                max-width: 300px;
+            }
         }
     </style>
 </head>
